@@ -61,7 +61,7 @@ exports.register = async (data) => {
     expires_at: new Date(Date.now() + 24 * 60 * 60 * 1000) // 24 hours
   });
 
-  const verifyLink = `${process.env.APP_URL}/api/auth/verify-email?token=${token}`;
+  const verifyLink = `${process.env.BACKEND_URL}/api/auth/verify-email?token=${token}`;
 
   await sendMail(
     email,

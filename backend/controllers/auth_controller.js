@@ -19,7 +19,7 @@ exports.verifyEmail = async (req, res) => {
 
     // redirect to frontend verify-email page
     return res.redirect(
-      `${process.env.APP_URL}/verify-email?status=success`
+      `${process.env.FRONTEND_URL}/verify-email?status=success`
     );
   } catch (err) {
     return res.redirect(
