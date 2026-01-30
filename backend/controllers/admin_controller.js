@@ -1,6 +1,6 @@
 const adminService = require("../services/admin_service");
 
-// EXISTING 
+
 exports.getContacts = async (req, res) => {
   try {
     const contacts = await adminService.getAllContacts();
