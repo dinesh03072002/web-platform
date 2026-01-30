@@ -9,8 +9,8 @@ exports.register = async (req, res) => {
     res.status(400).json({ message: err.message });
   }
 };
-
-// VERIFY EMAIL 
+  
+// VERIFY EMAIL  
 exports.verifyEmail = async (req, res) => {
   try {
     const { token } = req.query;
