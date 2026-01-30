@@ -6,6 +6,7 @@ node_modules/
 # backend
 backend/node_modules/
 
-# frontend (for later)
+# frontend
 frontend/node_modules/
 frontend/.next/
+ 
