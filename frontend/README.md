@@ -4,7 +4,6 @@ This is the frontend of the Web Platform application built using Next.js and Typ
 
 ## Tech Stack
 - Next.js
-- React
 - TypeScript
 - Tailwind CSS 
 
