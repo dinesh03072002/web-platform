@@ -225,7 +225,7 @@ export default function DashboardPage() {
                           key={c.id}
                           className="border-b border-slate-100 last:border-none"
                         >
-                          <td className="py-3 font-semibold text-slate-900">
+                          <td className="py-3  text-slate-900">
                             {c.name || "-"}
                           </td>
                           <td className="py-3 text-slate-600">
@@ -272,7 +272,7 @@ export default function DashboardPage() {
                           key={s.id}
                           className="border-b border-slate-100 last:border-none"
                         >
-                          <td className="py-3 font-semibold text-slate-900">
+                          <td className="py-3  text-slate-900">
                             {s.email || "-"}
                           </td>
                           <td className="py-3 text-slate-500">

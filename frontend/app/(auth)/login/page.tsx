@@ -38,7 +38,6 @@ export default function LoginPage() {
       setLoading(true);
       setError("");
 
-      // ✅ BACKEND LOGIN API
       const res = await api.post("/api/auth/login", {
         email,
         password,
@@ -48,31 +47,23 @@ export default function LoginPage() {
       const token = res.data?.token;
 
       if (!token) {
-        setError("Token not received from backend");
+        setError("Invalid email or password");
         return;
       }
 
-      // ✅ Remember email (optional)
       if (rememberMe) {
         localStorage.setItem("remember_email", email);
       } else {
         localStorage.removeItem("remember_email");
       }
 
-      // ✅ Save token
       setToken(token);
 
-      // ✅ Optional 2 seconds delay after clicking login
       await new Promise((r) => setTimeout(r, 2000));
 
-      // ✅ Redirect
       router.push("/dashboard");
     } catch (err: any) {
-      setError(
-        err?.response?.data?.message ||
-          err?.message ||
-          "Login failed. Please try again."
-      );
+      setError("Invalid email or password");
     } finally {
       setLoading(false);
     }
@@ -86,10 +77,8 @@ export default function LoginPage() {
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[650px] h-[650px] bg-pink-300/10 rounded-full blur-3xl" />
 
       <div className="relative w-full max-w-md">
-        {/* Glow Border */}
         <div className="absolute -inset-0.5 rounded-3xl bg-gradient-to-r from-blue-500/40 via-purple-500/40 to-pink-500/40 blur-xl opacity-50" />
 
-        {/* Card */}
         <form
           onSubmit={handleLogin}
           className="relative rounded-3xl bg-white/80 backdrop-blur-xl border border-white shadow-[0_20px_60px_-20px_rgba(0,0,0,0.25)] p-7 md:p-8"
@@ -113,6 +102,15 @@ export default function LoginPage() {
           {/* Divider */}
           <div className="my-6 h-px w-full bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
 
+          {/* 🔴 ERROR MESSAGE ABOVE EMAIL */}
+          {error && (
+            <div className="mb-4 rounded-2xl border border-red-200 bg-red-50 px-4 py-3">
+              <p className="text-red-600 text-sm font-semibold">
+                ❌ Invalid email or password
+              </p>
+            </div>
+          )}
+
           {/* Email */}
           <div className="space-y-2">
             <label className="text-sm font-semibold text-slate-700">Email</label>
@@ -124,7 +122,10 @@ export default function LoginPage() {
               <input
                 className="w-full rounded-2xl border border-slate-200 bg-white px-11 py-3 text-sm text-slate-900 placeholder:text-slate-400 outline-none transition focus:border-blue-400 focus:ring-4 focus:ring-blue-100"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                  setError("");
+                }}
                 placeholder="john@gmail.com"
                 autoComplete="email"
               />
@@ -146,7 +147,10 @@ export default function LoginPage() {
                 type={showPassword ? "text" : "password"}
                 className="w-full rounded-2xl border border-slate-200 bg-white px-11 pr-12 py-3 text-sm text-slate-900 placeholder:text-slate-400 outline-none transition focus:border-purple-400 focus:ring-4 focus:ring-purple-100"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  setError("");
+                }}
                 placeholder="Password@123"
                 autoComplete="current-password"
               />
@@ -184,13 +188,6 @@ export default function LoginPage() {
               Forgot password?
             </Link>
           </div>
-
-          {/* Error */}
-          {error && (
-            <div className="mt-4 rounded-2xl border border-red-200 bg-red-50 px-4 py-3">
-              <p className="text-red-600 text-sm font-semibold">❌ {error}</p>
-            </div>
-          )}
 
           {/* Button */}
           <button

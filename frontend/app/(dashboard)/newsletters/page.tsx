@@ -193,6 +193,7 @@ export default function NewslettersPage() {
         />
         <StatWidget
           title="Today"
+        
           value={todayCount}
           icon={Clock}
           gradient="bg-gradient-to-br from-cyan-400 to-cyan-600"

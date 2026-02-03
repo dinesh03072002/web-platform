@@ -6,7 +6,7 @@ import type { Contact } from "@/types/contact";
 import {
   ArrowUpDown,
   Search,
-  Eye,
+  //Eye,
   Mail,
   CalendarDays,
   MessageSquareText,
@@ -315,7 +315,7 @@ export default function ContactsTable({ data, onView }: Props) {
                               className="inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-semibold
                               bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-sm hover:opacity-95 active:scale-[0.99] transition"
                             >
-                              <Eye size={16} />
+                              
                               View
                             </button>
                           </div>

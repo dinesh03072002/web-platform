@@ -44,7 +44,7 @@ export default function NewslettersTable({ data, onView }: Props) {
         accessorKey: "email",
         header: "Email",
         cell: ({ getValue }) => (
-          <p className="text-sm font-semibold text-slate-900 truncate max-w-[520px]">
+          <p className="text-sm  text-slate-900 truncate max-w-[520px]">
             {String(getValue())}
           </p>
         ),
@@ -72,7 +72,7 @@ export default function NewslettersTable({ data, onView }: Props) {
                 className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold
                 bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-sm hover:opacity-95 transition"
               >
-                <Eye size={14} />
+            
                 View
               </button>
             </div>

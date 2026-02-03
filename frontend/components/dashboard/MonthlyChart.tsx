@@ -38,11 +38,11 @@ function formatCompact(n: number) {
 }
 
 export default function MonthlyChart({
-  contacts,
-  subscribers,
+  contacts = [],              // ✅ FIX
+  subscribers = [],           // ✅ FIX
 }: {
-  contacts: HasCreatedAt[];
-  subscribers: HasCreatedAt[];
+  contacts?: HasCreatedAt[];  // ✅ FIX
+  subscribers?: HasCreatedAt[]; // ✅ FIX
 }) {
   const [showContacts, setShowContacts] = useState(true);
   const [showSubscribers, setShowSubscribers] = useState(true);
@@ -142,7 +142,6 @@ export default function MonthlyChart({
 
   return (
     <div className="rounded-3xl bg-white border border-slate-200 shadow-sm p-4 md:p-5 overflow-hidden relative">
-      {/* compact header */}
       <div className="flex items-center justify-between gap-3 mb-3">
         <div>
           <h3 className="text-base md:text-lg font-extrabold text-slate-900">
@@ -151,7 +150,6 @@ export default function MonthlyChart({
           <p className="text-xs text-slate-500">Last 5 days</p>
         </div>
 
-        {/* compact totals */}
         <div className="hidden md:flex items-center gap-2">
           <div className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-1.5">
             <p className="text-[10px] font-semibold text-slate-500">Contacts</p>
@@ -171,7 +169,6 @@ export default function MonthlyChart({
         </div>
       </div>
 
-      {/* compact toggles */}
       <div className="flex items-center gap-2 mb-3">
         <button
           onClick={() => setShowContacts((p) => !p)}
@@ -196,7 +193,6 @@ export default function MonthlyChart({
         </button>
       </div>
 
-      {/* ✅ FIX: small height so no scrolling */}
       <div className="relative w-full h-[180px] md:h-[220px]">
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart
@@ -272,3 +268,4 @@ export default function MonthlyChart({
     </div>
   );
 }
+ 

@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
 
 import {
   LayoutDashboard,
@@ -11,16 +10,14 @@ import {
   Sparkles,
   PanelLeftClose,
   PanelLeftOpen,
-  ChevronDown,
-  UserPlus,
   UserCog,
-  List,
 } from "lucide-react";
 
 const menu = [
   { name: "Dashboard", path: "/dashboard", icon: LayoutDashboard },
   { name: "Contacts", path: "/contacts", icon: Users },
   { name: "Newsletters", path: "/newsletters", icon: Mail },
+  { name: "Users", path: "/users", icon: UserCog }
 ];
 
 export default function Sidebar({
@@ -31,11 +28,6 @@ export default function Sidebar({
   setSidebarOpen: (v: boolean) => void;
 }) {
   const pathname = usePathname();
-  const [usersOpen, setUsersOpen] = useState(true);
-
-  const usersActive =
-    pathname === "/users" ||
-    pathname === "/users/add";
 
   return (
     <div
@@ -111,62 +103,6 @@ export default function Sidebar({
             </Link>
           );
         })}
-
-        {/* USERS MODULE */}
-        {sidebarOpen && (
-          <div className="space-y-2">
-            <button
-              type="button"
-              onClick={() => setUsersOpen((v) => !v)}
-              className={`w-full flex items-center justify-between px-4 py-3 text-sm font-medium rounded-xl transition
-              ${
-                usersActive
-                  ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg"
-                  : "text-slate-700 hover:bg-white hover:shadow-md"
-              }`}
-            >
-              <span className="flex items-center gap-3">
-                <UserCog size={18} />
-                Users
-              </span>
-
-              <ChevronDown
-                size={16}
-                className={`transition ${usersOpen ? "rotate-180" : ""}`}
-              />
-            </button>
-
-            {usersOpen && (
-              <div className="pl-2 space-y-2">
-                <Link
-                  href="/users"
-                  className={`flex items-center gap-3 px-4 py-2 rounded-xl text-sm font-semibold transition
-                  ${
-                    pathname === "/users"
-                      ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-md"
-                      : "text-slate-700 hover:bg-white hover:shadow-sm"
-                  }`}
-                >
-                  <List size={16} />
-                  Users List
-                </Link>
-
-                <Link
-                  href="/users/add"
-                  className={`flex items-center gap-3 px-4 py-2 rounded-xl text-sm font-semibold transition
-                  ${
-                    pathname === "/users/add"
-                      ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-md"
-                      : "text-slate-700 hover:bg-white hover:shadow-sm"
-                  }`}
-                >
-                  <UserPlus size={16} />
-                  Add User
-                </Link>
-              </div>
-            )}
-          </div>
-        )}
       </nav>
 
       {/* Bottom Status */}
