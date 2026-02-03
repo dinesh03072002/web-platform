@@ -122,9 +122,7 @@ exports.login = async (data) => {
     throw new Error("Email not verified");
   }
 
-  if (user.role !== "ADMIN") {
-    throw new Error("Only admin can login here");
-  }
+ 
 
   const isMatch = await bcrypt.compare(password, user.password);
   if (!isMatch) {
