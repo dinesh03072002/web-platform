@@ -3,14 +3,14 @@ const sequelize = require("../config/db");
 
 const Newsletter = sequelize.define(
   "Newsletter",
-  {
+  {  
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
     },
  
-    email: {
+    email: {  
       type: DataTypes    .STRING,
       allowNull: false,
       unique: true,
